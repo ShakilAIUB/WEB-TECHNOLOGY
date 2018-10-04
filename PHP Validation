@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PHP Validation</title>
+	<style type="text/css">
+		.error {color: red;}
+	</style>
+</head>
+<body>
+
+<?php
+// define variables and set to empty values
+$fnameErr = $emailErr = $phoneErr = $passErr = $cpassErr = $genderErr = $educationErr = "";
+$fname = $email = $phone = $pass = $cpass = $gender = $education = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["fname"])) {
+    $fnameErr = "FULL Name is required";
+  } else {
+    $fname = test_input($_POST["fname"]);
+
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+      $fnameErr = "Only letters and white space allowed";
+    }
+  }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+    
+  if (empty($_POST["pass"]) && empty($_POST["cpass"]) ) {
+    $passErr = "password is required";
+    $cpassErr = "password is required";
+	}
+	else
+	{
+		$pass = test_input($_POST["pass"]);
+		$cpass = test_input($_POST["cpass"]);
+		
+
+	}
+
+
+  
+  if (empty($_POST["gender"])) {
+    $genderErr = "Gender is required";
+  } else {
+    $gender = test_input($_POST["gender"]);
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+	<h2>PHP Form Validation Example</h2>
+	<p><span class="error">* required field</span></p>
+
+	<form name="" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+		
+		UserName: <input type="text" name="uname" placeholder="Enter User Name"> value="">
+  		<br><br> 
+
+  		FULL Name: <input type="text" name="fname" value="<?php echo $fname;?>">
+  		<span class="error">* <?php echo $fnameErr;?></span>
+  		<br><br>
+
+  		Email: <input type="email" name="email" value="<?php echo $email;?>">
+  		<span class="error">* <?php echo $emailErr;?></span>
+  		<br><br>
+		
+		Phone: <input type="text" name="Phone" value="<?php echo $phone;?>">
+  		<span class="error">* <?php echo $phoneErr;?></span>
+  		<br><br>
+
+  		Password: <input type="Password" name="pass" value="<?php echo $pass;?>">
+  		<span class="error">* <?php echo $passErr;?></span>
+  		<br><br>
+
+  		Confirm Password: <input type="Password" name="cpass" value="<?php echo $cpass;?>">
+  		<span class="error">* <?php echo $cpassErr;?></span>
+  		<br><br>
+
+  		Gender:
+		<input type="radio" name="gender" <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
+		<input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
+		<input type="radio" name="gender" <?php if (isset($gender) && $gender=="other") echo "checked";?> value="other">Other  
+		<span class="error">* <?php echo $genderErr;?></span>
+		<br><br>
+
+		Education:
+		<input type="checkbox" name="education[]" <?php if (isset($education) && $education=="SSC") echo "checked";?>  value="SSC">SSC
+		<input type="checkbox" name="education[]" <?php if (isset($education) && $education=="HSC") echo "checked";?>   value="HSC">HSC
+		<input type="checkbox" name="education[]" <?php if (isset($education) && $education=="BSC") echo "checked";?>   value="BSC">BSC
+		<input type="checkbox" name="education[]"  <?php if (isset($education) && $education=="MSC") echo "checked";?>  value="MSC">MSC
+		<span class="error">* <?php echo $educationErr;?></span>
+		<br><br>
+
+		<input type="submit" name="submit" value="Submit"> 
+
+	</form>
+
+<?php
+echo "<h2>Your Registered Information is :</h2>";
+
+
+echo "User Name: ".$uname."<br/>FullName: ".$fname."<br/>Email: ". $email."<br/> Phone: ".$phone."<br/> Password: ".$pass."<br/> Gender: ". $gender;
+echo "<br/>Education:<br/>";
+
+foreach($education as $k){
+echo $k."<br/>";
+?>
+
+</body>
+</html>
