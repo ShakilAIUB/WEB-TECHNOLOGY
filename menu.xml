@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn>d</mn>
+  <itm>dd</itm>
+  <prc>4</prc>
+ </userdata>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn>ff</mn>
+  <itm>ff</itm>
+  <prc>44</prc>
+ </userdata>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn>sd</mn>
+  <userdata>
+   <itm>sdd</itm>
+   <userdata>
+    <prc>44</prc>
+   </userdata>
+  </userdata>
+ </userdata>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <mn>dfsd</mn>
+ <itm>fdfd</itm>
+ <prc>f</prc>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn/>
+  <itm/>
+  <prc/>
+ </userdata>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn>g</mn>
+  <itm>gg</itm>
+  <prc>44</prc>
+ </userdata>
+</information>
+<?xml version="1.0" encoding="UTF-8"?>
+<information>
+ <userdata>
+  <mn></mn>
+  <itm></itm>
+  <prc></prc>
